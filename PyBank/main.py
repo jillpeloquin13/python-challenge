@@ -15,11 +15,11 @@ csvpath = os.path.join('Resource', '02-Homework_03-Python_Instructions_PyBank_Re
 
 with open(csvpath) as csvfile:
 
-    csvreader = csv.reader(csv, delimiter=',')
+    csvreader = csv.reader(csvfile, delimiter=',')
     print(csvreader)
+    
+    csv_header = next(csvreader)
+    print(f"CSV Header: {csv_header}")
 
-csv_header = next(csvreader)
-print(f"CSV Header: {csv_header}")
-
-for row in csvreader:
-    print(row)
+    for row in csvreader:
+        print(','.join(row))
