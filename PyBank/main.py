@@ -1,5 +1,4 @@
 # PyBank main.py
-
 # Your task is to create a Python script that analyzes the records to calculate each of the following:
 # The total number of months included in the dataset
 # he net total amount of "Profit/Losses" over the entire period
@@ -21,5 +20,7 @@ with open(csvpath) as csvfile:
     csv_header = next(csvreader)
     print(f"CSV Header: {csv_header}")
 
-    for row in csvreader:
-        print(','.join(row))
+    #count/define the number of months
+    months = len(list(csvreader))
+    print(months)
+ 
