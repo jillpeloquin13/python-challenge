@@ -65,3 +65,44 @@ with open(csvpath) as csvfile:
     print(f"Average Change: ${sum/(months-1):5.2f}")
     print(f"Greatest Increase in Profits:", TotalIncrease[0], "($",TotalIncrease[1],")")
     print(f"Greated Decrease in Profits:", TotalDecrease[0], "($",TotalDecrease[1],")")
+
+    AverageChange = sum/(months-1)
+    GIPM = TotalIncrease[0]
+    GIPV = TotalIncrease[1]
+    LIPM = TotalDecrease[0]
+    LIPV = TotalDecrease[1]
+
+
+output_path = os.path.join("financials.csv")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w', newline='') as csvfile:
+
+    # Initialize csv.writer
+    csvwriter = csv.writer(csvfile, delimiter=',')
+
+    # Write the first row (column headers)
+    csvwriter.writerow(["Total Months", "Total Net", "Average Change", "Greatest Increase in Profits Month", "Greatest Increase in Profits Money", "Greatest Decrease in Profits Month", "Greatest Decrase in Profits Money"])
+    csvwriter.writerow([months, numbertotal, AverageChange, GIPM, GIPV, LIPM, LIPV])
+
+
+output_path = os.path.join("financials.text")
+
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w', newline='') as f:
+    f.writelines("Financial Analysis \n")
+    f.writelines('\n')
+    f.writelines('-------------------------------- \n')
+    f.writelines('\n')
+    f.writelines(f"Total Months: {months} \n")
+    f.writelines(f"Average Change: ${sum/(months-1):5.2f} \n")
+    f.writelines(f"Total ${numbertotal} \n")
+    f.writelines(f"Greatest Increase in Profits: {GIPM} ($ {GIPV}) \n")
+    f.writelines(f"Greatest Decrase in Profits: {LIPM} ($ {LIPV}) \n")
+   
+
+
+
+
+
+ 
