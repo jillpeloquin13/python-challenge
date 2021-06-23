@@ -27,15 +27,14 @@ with open(csvpath) as csvfile:
     for row in rows:
         Candidates.append(row[2])
     list = (Counter(Candidates))
-
-    for key in list:
-        print(key, ':' , ('%.3f'%(int(list[key])/votescast*100)),'% (',list[key],')')
-    
     Winner = max(list.items(), key=operator.itemgetter(1))[0]
 
     print(f'Election Results')
     print(f'------------------------------------')
     print(f"Total Votes: {votescast}")
+    print(f'------------------------------------')
+    for key in list:
+        print(key, ':' , ('%.3f'%(int(list[key])/votescast*100)),'% (',list[key],')')
     print(f'------------------------------------')
     print(f"Winner: {Winner}")
     print(f'------------------------------------')
@@ -45,9 +44,17 @@ with open(csvpath) as csvfile:
     with open(output_path, 'w', newline='') as f:
         f.writelines("Election Results \n")
         f.writelines('\n')
-        f.writelines('-------------------------------- \n')
+        f.writelines('-------------------------------------\n')
         f.writelines('\n')
-        f.writelines(f"Total Votes: {votescast}")
-        f.writelines(f'------------------------------------')
-        f.writelines(f"Winner: {Winner}")
-        f.writelines(f'------------------------------------')
+        f.writelines(f"Total Votes: {votescast} \n")
+        f.writelines('\n')
+        f.writelines('------------------------------------\n')
+        f.writelines('\n')
+        for key in list:
+            f.write(f"{key}:  {('%.3f'%(int(list[key])/votescast*100))}% ({list[key]})\n")
+        f.writelines('\n')
+        f.writelines('------------------------------------\n')
+        f.writelines('\n')
+        f.writelines(f"Winner: {Winner} \n")
+        f.writelines('\n')
+        f.writelines('------------------------------------\n')
