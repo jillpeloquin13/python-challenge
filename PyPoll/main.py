@@ -1,9 +1,5 @@
 # Pypoll main.py 
-# The total number of votes cast
-# A complete list of candidates who received votes
-# The percentage of votes each candidate won
-# The total number of votes each candidate won
-# The winner of the election based on popular vote.
+# JAP 06212021
 
 import os
 import csv
@@ -22,13 +18,14 @@ with open(csvpath) as csvfile:
     #count the total number of votes cast
     votescast = len(rows)
     
-    # Determine unique Canididates 
+    # Determine unique Candidates 
     Candidates = []
     for row in rows:
         Candidates.append(row[2])
     list = (Counter(Candidates))
     Winner = max(list.items(), key=operator.itemgetter(1))[0]
-
+    
+    # write to the console
     print(f'Election Results')
     print(f'------------------------------------')
     print(f"Total Votes: {votescast}")
@@ -39,7 +36,7 @@ with open(csvpath) as csvfile:
     print(f"Winner: {Winner}")
     print(f'------------------------------------')
     
-    
+    #write to the csv file
     output_path = os.path.join("polls.text")
     with open(output_path, 'w', newline='') as f:
         f.writelines("Election Results \n")
